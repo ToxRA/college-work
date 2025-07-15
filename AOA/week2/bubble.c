@@ -7,7 +7,7 @@ void swap(int *a, int *b) {
 }
 
 int main() {
-    int n, arr[10], isSwap = 0;
+    int n, arr[10];
     
     printf("Enter the number of elements(max. 10): ");
     scanf("%d", &n);
@@ -21,11 +21,7 @@ int main() {
         for (int j = 0; j < n-i-1; j++) {
             if (arr[j] > arr[j+1]) {
                 swap(&arr[j], &arr[j+1]);
-                isSwap = 1;
             }
-        }
-        if (isSwap == 0) {
-            break;
         }
         
     }
