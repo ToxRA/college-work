@@ -1,12 +1,18 @@
 #include <stdio.h>
 
 int main() {
-    int curr, prev, n = 5;
+    int curr, prev, n = 5, a[10];
 
-    int a[5] = {4, 1, 5, 2, 3};
+    printf("Enter the number of elements(max. 10): ");
+    scanf("%d", &n);
+    
+    printf("Enter the elements of Array: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
 
     for (int i = 1; i < n; i++) {
-       curr = i;
+       curr = a[i];
        prev = i - 1;
        
        while (prev >= 0 && a[prev] > curr) {
