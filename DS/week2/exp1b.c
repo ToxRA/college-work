@@ -26,10 +26,18 @@ int main(void) {
 
     for (int i = 0; i < MAX_SIZE; i++) {
         if (getPrecedence(infix[i]) > 0) {
-            
+            infix[i] = stack[i];
         } else {
-            infix[i] = postfix[i]
+            infix[i] = postfix[i];
         }
+    }
+
+    for (int i = MAX_SIZE; i > 0; i--) {
+        stack[i] = postfix[i];
+    }
+
+    for (int i = 0; i < 10; i++) {
+        printf("%c ", postfix[i]);
     }
 
     printf("\n");
