@@ -1,12 +1,11 @@
 #include <stdio.h>
 
 void merge(int A[], int start, int mid, int end) {
-    int i = start; // Starting index for left subarray
-    int j = mid + 1; // Starting index for right subarray
-    int k = 0; // Index for the temporary array
-    int temp[end - start + 1]; // Temporary array to hold merged elements
+    int i = start;
+    int j = mid + 1;
+    int k = 0;
+    int temp[end - start + 1];
 
-    // Merge the two halves into the temporary array
     while (i <= mid && j <= end) {
         if (A[i] <= A[j]) {
             temp[k++] = A[i++];
@@ -15,17 +14,14 @@ void merge(int A[], int start, int mid, int end) {
         }
     }
 
-    // Copy the remaining elements of the left subarray, if any
     while (i <= mid) {
         temp[k++] = A[i++];
     }
 
-    // Copy the remaining elements of the right subarray, if any
     while (j <= end) {
         temp[k++] = A[j++];
     }
 
-    // Copy the merged elements back into the original array
     for (i = start, k = 0; i <= end; i++, k++) {
         A[i] = temp[k];
     }
@@ -34,9 +30,9 @@ void merge(int A[], int start, int mid, int end) {
 void mergeSort(int A[], int start, int end) {
     if (start < end) {
         int mid = (start + end) / 2;
-        mergeSort(A, start, mid); // Sort the left half
-        mergeSort(A, mid + 1, end); // Sort the right half
-        merge(A, start, mid, end); // Merge the sorted halves
+        mergeSort(A, start, mid);
+        mergeSort(A, mid + 1, end);
+        merge(A, start, mid, end);
     }
 }
 
