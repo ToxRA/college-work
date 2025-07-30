@@ -50,7 +50,7 @@ int main() {
         return 1;
     }
     
-    printf("Enter %d elements:\n", initial_size);
+    printf("Enter %d elements: ", initial_size);
     for (int i = 0; i < initial_size; i++) {
         scanf("%d", &stack[i]);
         s_top++;

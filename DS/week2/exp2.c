@@ -34,7 +34,7 @@ int main(void) {
     int choice, num;
 
     while (1) {
-        printf("\n\nChoose from 1-4:\n1. Display the Queue\n2. Enqueue\n3. Dequeue\n4. Exit\n");
+        printf("\n\nChoose from 1-4:\n1. Display the Queue\n2. Enqueue\n3. Dequeue\n4. Exit\nChoice: ");
         scanf("%d", &choice);
         
         switch(choice) {
