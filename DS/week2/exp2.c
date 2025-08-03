@@ -1,67 +1,45 @@
 #include <stdio.h>
 
-#define MAX_SIZE 10
-int rear = -1, front = 0, Q[MAX_SIZE];
+#define MAX_SIZE 100
 
-void enqueue(int num) {
-    if (rear == MAX_SIZE - 1) {
-        printf("Queue Overflow, cannot add %d\n", num);
-    } else {
-        rear++;
-        Q[rear] = num;
-    }
-}
+int stackTop = -1;
+char stack[10];
 
-void dequeue() {
-    if (front > rear) {
-        printf("Queue Underflow! No elements in the queue\n");
-    } else {
-        front++;
-    }
-}
-
-void display() {
-    if (front > rear) {
-        printf("Queue is empty.\n");
-        return;
-    }
-    for (int i = front; i <= rear; i++) {
-        printf("%d ", Q[i]);
+int getPrecedence(char op) {
+    switch (op) {
+        case '^':
+            return 3;
+        case '/':
+        case '*':
+            return 2;
+        case '+':
+        case '-':
+            return 1;
+        default:
+            return 0;
     }
 }
 
 int main(void) {
-    int choice, num;
+    char postfix[MAX_SIZE], stack[MAX_SIZE];
+    char infix[] = "A * B + C";
 
-    while (1) {
-        printf("\n\nChoose from 1-4:\n1. Display the Queue\n2. Enqueue\n3. Dequeue\n4. Exit\nChoice: ");
-        scanf("%d", &choice);
-        
-        switch(choice) {
-            case 1:
-            display();
-            break;
-
-            case 2:
-            printf("Enter the number to enqueue: ");
-            scanf("%d", &num);
-            enqueue(num);
-            break;
-
-            case 3:
-            dequeue();
-            break;
-
-            case 4:
-            return 0;
-            
-            default:
-            printf("Please enter a number from 1-4!\n");
-            break;
+    for (int i = 0; i < MAX_SIZE; i++) {
+        if (getPrecedence(infix[i]) > 0) {
+            infix[i] = stack[i];
+        } else {
+            infix[i] = postfix[i];
         }
     }
-   
-    printf("\n");
 
+    for (int i = MAX_SIZE; i > 0; i--) {
+        stack[i] = postfix[i];
+    }
+
+    for (int i = 0; i < 10; i++) {
+        printf("%c ", postfix[i]);
+    }
+
+    printf("\n");
     return 0;
 }
