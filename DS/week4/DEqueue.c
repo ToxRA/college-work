@@ -77,7 +77,7 @@ int main(void) {
             break;
             
             case 5:
-            printf("Exiting program.\n");
+            printf("\n......Exiting program......\n\n");
             return 0;
             
             default:
