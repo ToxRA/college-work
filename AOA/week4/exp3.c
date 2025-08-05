@@ -1,43 +1,41 @@
-//Implement and Analyze time and space complexity of multiplying long Integers using divide and conquer strategy.
-
 #include <stdio.h>
 #include <math.h>
 
-int a[4] = {1,2,3,4};
-int b[4] = {5,6,7,8};
-int len = 4;
+int len;
 
-// int expo(int base, int pow) {
-//     int ans;
-//     ans = 1;
-//     for(int i = 0; i < pow; i++) {
-//         ans *= base;
-//     }
-
-//     return ans;
-
-// }
-
-void multiplyLong(int a, int b, int c, int d) {
-    int s1 = a*c;
-    int s2 = b*d;
-    int s3 = (a+b) * (c+d);
-    int s4 = s3 - s2 - s1;
+// Karatsuba Algo
+long long int multiplyLong(long long int a, long long int b, long long int c, long long int d) {
+    long long int s1 = a * c;
+    long long int s2 = b * d;
+    long long int s3 = (a + b) * (c + d);
+    long long int s4 = s3 - s2 - s1;
     
-    long int result = s1*( (int)pow(10, len) ) + s4*( (int)pow(10, len / 2) ) + s2;
+    long long int result = s1*( pow(10, len) ) + s4*( pow(10, len / 2) ) + s2;
 
-    printf("S1: %d\n", s1);
-    printf("S2: %d\n", s2);
-    printf("S3: %d\n", s3);
-    printf("S4: %d\n", s4);
-
-    printf("Result: %ld", result);
+    return result;
 }
 
 int main () {
-    int mid = len/2;
-    int a1 = 0, a2 = 0, b1 = 0, b2 = 0;
+    int mid = len / 2;
+    long long int a1 = 0, a2 = 0, b1 = 0, b2 = 0;
 
+    long long int a[len];
+    long long int b[len];
+
+    printf("---MULTIPLYING LONG INTEGERS---\n");
+    printf("Enter the length of digits: ");
+    scanf("%d", &len);
+
+    printf("Enter the first number: ");
+    for (int i = 0; i < len; i++) {
+        scanf("%lld", &a[i]);
+    }
+
+    printf("Enter the second number: ");
+    for (int i = 0; i < len; i++) {
+        scanf("%lld", &b[i]);
+    }
+    
     for(int i = 0; i < mid; i++) {
         a1 = a1*10 + a[i];
         b1 = b1*10 + b[i];
@@ -46,5 +44,8 @@ int main () {
         b2 = b2*10 + b[mid+i];
     }
 
-    multiplyLong(a1, a2, b1, b2);
+    long long int result = multiplyLong(a1, a2, b1, b2);
+    printf("%ld \n", result);
+
+    return 0;
 }
